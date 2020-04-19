@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sdk</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <xsolla-payment-list id="payment-list"></xsolla-payment-list>
+  <xsolla-payment-method id="vk-payment-method" name="vk"></xsolla-payment-method>
+  <script>
+    Promise.all([
+      customElements.whenDefined('xsolla-payment-list'),
+      customElements.whenDefined('xsolla-payment-method'),
+    ]).then(() => {
+      const vkPaymentMethodElement = document.getElementById('vk-payment-method');
+      vkPaymentMethodElement.addEventListener('clicked', () => {
+        console.log( 'custom element clicked!' );
+      });
+
+      const paymentListElement = document.getElementById('payment-list');
+      paymentListElement.names = ['paypal', 'vk'];
+    });
+  </script>
+</body>
+</html>
